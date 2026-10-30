@@ -14,7 +14,7 @@ class World {
 
 public:
     World();
-    World(const int theWidth, const int theHeight, Location& chargerLoc);
+    World(const int size, Location& chargerLoc);
 
     bool isOutOfBounds(Location& location);
     Location& getChargingStationLocation();

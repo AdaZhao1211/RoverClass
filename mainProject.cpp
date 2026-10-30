@@ -37,10 +37,9 @@ Mission getMission(int minCoord, int maxCoord) {
 }
 
 int main() {
-    int WORLD_WIDTH = 10;
-    int WORLD_HEIGHT = 10;
+    int WORLD_SIZE = 10;
     Location chargerLocation{0, 0};
-    World mars(WORLD_WIDTH, WORLD_HEIGHT, chargerLocation);
+    World mars(WORLD_SIZE, chargerLocation);
 
     Location startingLocation{0, 0};
     Rover rover(startingLocation, Direction::EAST, 40);

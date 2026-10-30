@@ -7,9 +7,9 @@
 
 World::World() {}
 
-World::World(const int theWidth, const int theHeight, Location& chargerLoc) {
-    width = theHeight;
-    height = theHeight;
+World::World(const int size, Location& chargerLoc) {
+    width = size;
+    height = size;
     chargingStationLocation = chargerLoc;
 };
 
