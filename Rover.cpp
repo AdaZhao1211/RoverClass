@@ -1,7 +1,7 @@
 //
 // Created by William Wright on 10/28/26.
 //
-#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -25,7 +25,10 @@ string Rover::directionToString(Direction direction) {
     return "UNKNOWN";
 }
 
-Rover::Rover(Location initialLocation, Direction initialHeading, int initialBatteryLevel) {
+
+// question: are we gonna teach member initializer list?
+Rover::Rover(Location initialLocation, Direction initialHeading, int initialBatteryLevel, ostream& outputStream)
+    : outputStream(outputStream) {
     location = initialLocation;
     heading = initialHeading;
     batteryLevel = initialBatteryLevel;
@@ -85,7 +88,8 @@ bool Rover::charge() {
         batteryLevel = FULL_CHARGE;
         return true;
     }
-    cout << "Command rejected: Rover not on charger" << endl;
+    // question: make change to the handout version
+    // fout << "Command rejected: Rover not on charger" << endl;
     return false;
 }
 
@@ -128,7 +132,8 @@ bool Rover::executeCommand(const char command) {
         case COMMAND_SCAN: wasSuccessful = scan(); break;
         case COMMAND_CHARGE: wasSuccessful = charge(); break;
         default:
-            cout << "Invalid command!" << std::endl;
+            // question: make change to the handout version
+            outputStream << "Invalid command: " << command << endl;
             return false;
     }
     printCommandStatus(command, wasSuccessful);
@@ -148,11 +153,12 @@ void Rover::executeMission(Mission& mission) {
 }
 
 void Rover::printCommandStatus(char command, bool wasSuccessful) {
-    cout << "Command " << command << " ";
+    // EDIT: Write every part of the command status to fout instead of cout.
+    outputStream << "Command " << command << " ";
     if (wasSuccessful) {
-        cout << "succeeded. ";
+        outputStream << "succeeded. ";
     } else {
-        cout << "failed. ";
+        outputStream << "failed. ";
     }
-    cout << toString() << endl;
+    outputStream << toString() << endl;
 }
