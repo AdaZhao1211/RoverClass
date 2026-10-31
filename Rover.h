@@ -1,7 +1,7 @@
 //
 // Created by William Wright on 10/28/26.
 //
-
+#include<ostream>
 #ifndef CSCI1300_CS1_ROVER_H
 #define CSCI1300_CS1_ROVER_H
 #include "Direction.h"
@@ -26,6 +26,7 @@ private:
     Direction heading;
     int batteryLevel;
     World world;
+    ostream& outputStream;
 
     string directionToString(Direction direction);
     bool isAtLocation(Location& position);
@@ -41,7 +42,7 @@ private:
     void printCommandStatus(char command, bool wasSuccessful);
 
 public:
-    Rover(Location initialLocation, Direction initialHeading, int initialBatteryLevel);
+    Rover(Location initialLocation, Direction initialHeading, int initialBatteryLevel, ostream& outStream);
 
     void putOnWorld(World mars);
     string toString();

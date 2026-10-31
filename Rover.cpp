@@ -25,7 +25,7 @@ string Rover::directionToString(Direction direction) {
     return "UNKNOWN";
 }
 
-Rover::Rover(Location initialLocation, Direction initialHeading, int initialBatteryLevel) {
+Rover::Rover(Location initialLocation, Direction initialHeading, int initialBatteryLevel, ostream& outStream) : outputStream(outStream) {
     location = initialLocation;
     heading = initialHeading;
     batteryLevel = initialBatteryLevel;
@@ -147,11 +147,11 @@ void Rover::executeMission(Mission& mission) {
 }
 
 void Rover::printCommandStatus(char command, bool wasSuccessful) {
-    cout << "Command " << command << " ";
+    outputStream << "Command " << command << " ";
     if (wasSuccessful) {
-        cout << "succeeded. ";
+        outputStream << "succeeded. ";
     } else {
-        cout << "failed. ";
+        outputStream << "failed. ";
     }
-    cout << toString() << endl;
+    outputStream << toString() << endl;
 }

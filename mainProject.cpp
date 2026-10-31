@@ -3,6 +3,8 @@
 //
 
 #include <iostream>
+#include<fstream>
+
 using namespace std;
 
 #include "Location.h"
@@ -70,7 +72,17 @@ int main() {
     World mars(WORLD_SIZE, chargerLocation);
 
     Location startingLocation{0, 0};
-    Rover rover(startingLocation, Direction::EAST, 40);
+
+    ofstream fout;
+    string outputFilename;
+    cout << "Enter output filename: ";
+    cin >> outputFilename;
+    fout.open(outputFilename);
+    if(fout.fail()) {
+        cerr << "Error opening output file." << endl;
+        return 1;
+    }
+    Rover rover(startingLocation, Direction::EAST, 40, fout);
     rover.putOnWorld(mars);
 
     while (true) {
