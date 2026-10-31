@@ -12,9 +12,9 @@ using namespace std;
 #include "Rover.h"
 
 // split helper function
-int split(string line, char delimiter, string fields[], int capacity) {
+void split(string line, char delimiter, string fields[], int capacity) {
     if (capacity <= 0) {
-        return -1;
+        return;
     }
 
     int count = 0;
@@ -22,7 +22,7 @@ int split(string line, char delimiter, string fields[], int capacity) {
     for (char character : line) {
         if (character == delimiter) {
             if (count >= capacity) {
-                return -1;
+                return;
             }
             fields[count++] = field;
             field = "";
@@ -32,10 +32,10 @@ int split(string line, char delimiter, string fields[], int capacity) {
     }
 
     if (count >= capacity) {
-        return -1;
+        return;
     }
     fields[count++] = field;
-    return count;
+    return;
 }
 
 
