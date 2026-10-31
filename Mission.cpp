@@ -16,7 +16,7 @@ bool Mission::isQuit() {
 }
 
 string Mission::getStatus() {
-    string status = "Mission Complete!\n";
+    string status = "-----Mission Complete!-----\n";
     status += "Number of Successful Commands: " + to_string(numSuccessfulCommands) + "\n";
     if (goalReached) {
         status += "Goal reached!\n";

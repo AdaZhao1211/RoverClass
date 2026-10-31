@@ -85,7 +85,6 @@ bool Rover::charge() {
         batteryLevel = FULL_CHARGE;
         return true;
     }
-    cout << "Command rejected: Rover not on charger" << endl;
     return false;
 }
 
@@ -128,7 +127,7 @@ bool Rover::executeCommand(const char command) {
         case COMMAND_SCAN: wasSuccessful = scan(); break;
         case COMMAND_CHARGE: wasSuccessful = charge(); break;
         default:
-            cout << "Invalid command!" << std::endl;
+            cout << "Command " << command << " failed. Invalid command."<< endl;
             return false;
     }
     printCommandStatus(command, wasSuccessful);

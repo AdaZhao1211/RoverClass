@@ -11,6 +11,34 @@ using namespace std;
 #include "Mission.h"
 #include "Rover.h"
 
+// split helper function
+int split(string line, char delimiter, string fields[], int capacity) {
+    if (capacity <= 0) {
+        return -1;
+    }
+
+    int count = 0;
+    string field;
+    for (char character : line) {
+        if (character == delimiter) {
+            if (count >= capacity) {
+                return -1;
+            }
+            fields[count++] = field;
+            field = "";
+        } else {
+            field += character;
+        }
+    }
+
+    if (count >= capacity) {
+        return -1;
+    }
+    fields[count++] = field;
+    return count;
+}
+
+
 Location getLocation(string prompt, int minCoord, int maxCoord) {
     int x, y;
     do {
