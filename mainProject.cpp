@@ -82,14 +82,29 @@ int main() {
         cerr << "Error opening output file." << endl;
         return 1;
     }
+
+    ifstream fin;
+    fin.open("missions.csv");
+    if(fin.fail()) {
+        cerr << "Error opening input file." << endl;
+        return 1;
+    }
     Rover rover(startingLocation, Direction::EAST, 40, fout);
     rover.putOnWorld(mars);
 
-    while (true) {
-        Mission mission = getMission(mars.getMinCoord(), mars.getMaxCoord());
-        if (mission.isQuit()) {
-            break;
-        }
+    string line;
+    while (getline(fin, line)) {
+        // Mission mission = getMission(mars.getMinCoord(), mars.getMaxCoord());
+        // if (mission.isQuit()) {
+        //     break;
+        // }
+        string fields[3];
+
+        split (line, ',', fields, 3);
+
+        Mission mission (fields[0]);
+        Location newGoal {stoi(fields[1]), stoi(fields[2])};
+        mission.setGoal(newGoal);
         rover.executeMission(mission);
         cout << mission.getStatus();
         cout << "Rover ended at " << rover.toString() << endl;
