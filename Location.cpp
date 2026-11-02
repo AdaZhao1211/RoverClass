@@ -44,7 +44,7 @@ string Location::toString() {
 }
 
 bool Location::isWithinBounds(int minCoord, int maxCoord) {
-    return x >= minCoord && x < maxCoord && y >= minCoord && y < maxCoord;
+    return x >= minCoord && x <= maxCoord && y >= minCoord && y <= maxCoord;
 }
 
 int Location::getX() {

@@ -1,3 +1,0 @@
-Command F succeeded. coordinates: (1, 0), Heading: EAST, Battery: 38
-Command F succeeded. coordinates: (2, 0), Heading: EAST, Battery: 36
-Command L succeeded. coordinates: (2, 0), Heading: NORTH, Battery: 35
